@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  priority: 
+  status: MyString
+  quantity: 
+  expected_date: 2015-04-29
+  delivered_date: 2015-04-29
+
+two:
+  name: MyString
+  type: 
+  priority: 
+  status: MyString
+  quantity: 
+  expected_date: 2015-04-29
+  delivered_date: 2015-04-29
