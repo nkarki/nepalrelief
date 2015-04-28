@@ -1,0 +1,112 @@
+<% clazz_string = params[:controller].singularize.downcase; clazz = params[:controller].classify.constantize; %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="widget">
+      <div class="widget-header">
+        <%= link_to "#{clazz_string} +".titleize, eval("new_#{clazz_string}_path"), class: "btn btn-sm btn-primary progasket" %>
+        <% if clazz.respond_to? :to_xlsx %>
+        &nbsp; &nbsp; Export as: 
+        <% if controller_name == 'users' and action_name == "inactive" %>
+          <%= link_to "XLSX", eval("#{clazz_string.pluralize}_excel_output_path({inactive: true})") %>
+        <% else %>
+          <%= link_to "XLSX", eval("#{clazz_string.pluralize}_excel_output_path") %>
+        <% end %>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+      <div class="widget-body">
+        <%= render 'layouts/filters' %>
+        <% if @objects.count > 0 %>
+        <div class="table-responsive">
+          <table id="data_table" class="table table-striped sortable">
+            <thead>
+              <tr>
+                <% clazz.show.each do |attr| %>
+                  <th onclick="sortBy('<%= attr %>')"><%= attr.humanize %><span class="glyphicon glyphicon-sort pull-right"></span></th>
+                <% end %>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @objects.each do |object| %>
+              <tr>
+                <% clazz.show.each do |attr| %>
+                  <td>
+                    <%= object.send(attr).to_s unless object.send(attr).respond_to? :display_name %>
+                    <%= object.send(attr).display_name if object.send(attr).respond_to? :display_name %>
+                  </td>
+                <% end %>
+                <% if params[:controller] != 'users' %>
+                  <% if (!clazz.respond_to?(:editable?) || clazz.editable?) %>
+                      <td>
+                        <%= link_to object do %>
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= link_to eval("edit_#{clazz_string}_path(object)") do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= link_to object, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                            <span style="color: red;" class="glyphicon glyphicon-trash"></span>
+                        <% end %>
+                      </td>
+                  <% else %>
+                    <td colspan="3">
+                    </td>
+                  <% end %>
+                <% elsif params[:action] != 'inactive' %>
+                  <td>
+                    <% if object.approved %>
+                      <%= link_to activate_users_path( :id => object.id ), method: :post, data: { confirm: 'Are you sure to De-activate this user?' } do %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      <% end %>
+                    <% else %>
+                      <%= link_to activate_users_path( :id => object.id ), method: :post, data: { confirm: 'Are you sure to Activate this user?' } do %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to eval("edit_#{clazz_string}_path(object)") do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                  </td>
+                  <td>
+                    <%= link_to object, method: :delete, data: { confirm: 'Are you sure to delete this user ?' } do %>
+                        <span style="color: red;" class="glyphicon glyphicon-trash"></span>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td>
+                    <%= link_to activate_users_path( :id => object.id ), method: :post, data: { confirm: 'Are you sure to activate this user?' } do %>
+                      <span class="glyphicon glyphicon-ok"></span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to eval("edit_#{clazz_string}_path(object)") do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                  </td>
+                  <td>
+                    <%= link_to object, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <span style="color: red;" class="glyphicon glyphicon-trash"></span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>          
+        </div>
+        <% else %>
+         No items to list.
+        <% end %>
+      </div>
+    </div>
+    <%= paginate @objects %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+wb.add_worksheet(name: "sheet1") do |sheet|
+  klass = controller_name.classify.constantize
+  sheet.add_row klass.show.map(&:humanize) ## Header values of Excel
+  @objects.each do |object|
+
+    row = Array.new
+    klass.show.each do |field|
+      row << object.send(field).to_s unless object.send(field).respond_to? :display_name
+      row << object.send(field).display_name if object.send(field).respond_to? :display_name
+    end
+    sheet.add_row row
+  end
+end

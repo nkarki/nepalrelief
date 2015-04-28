@@ -6,27 +6,30 @@
     <%= javascript_include_tag 'application' %>
 	<%= csrf_meta_tags %>
 </head>
-<body>
+<body style="background:#005700" data-no-turbolink="true">
   <%= flash_messages %>
-	<div id="page-wrapper" class="active">
-		<%= render 'layouts/sidebar' %>
-		<div id="content-wrapper">
-			<div class="page-content" data-no-turbolink="true">
-				<%= yield %>
-			</div>
-		</div>
+	<div class="container">
+	  <% if @flag %>
+	    <div class="row">
+	  	  <%= yield %>
+	  	</div>
+	  <% else %>
+		  <div class="row">
+	  	  <%= yield %>
+	  	</div>
+		<% end %>
 	</div>
-	
+
 	<script type="text/javascript">
 			$(function(){
 				$('#flash').css('position', 'fixed');
 				$('#flash').css('top', '0');
-				$('#flash').css('left', '30%');
+				$('#flash').css('left', '25%');
 				$('#flash').css('z-index', '1');
 				$('#flash').css('width', '50%');
 				$('#flash').css('border-color', 'black');
 		   $('#flash').delay(500).fadeIn('normal', function(){
-		      $(this).delay(500).fadeOut(8000);
+		      $(this).delay(1000).fadeOut(3000);
 		   });
 		  });
 	</script>

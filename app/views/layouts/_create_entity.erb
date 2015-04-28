@@ -1,0 +1,98 @@
+<% clazz_string = params[:controller].classify.underscore; clazz = params[:controller].classify.constantize %>
+<% if current_user.role != "administrator" %>
+  <% exclude_list = ["id", "created_at", "updated_at", "create_user_id","country"] %>
+<% else %>
+  <% exclude_list = ["id", "created_at", "updated_at", "create_user_id","country", "encrypted_password",  "reset_password_token", "reset_password_sent_at", "remember_created_at", "sign_in_count", "current_sign_in_at", "last_sign_in_at", "current_sign_in_ip", "last_sign_in_ip", "authentication_token", "visit_id", 
+    "appliance_id", "appliance_part_id"] %>
+<% end %>
+
+<% foreign_keys = get_foreign_key_collection(clazz) %>
+<% fk_objects = get_foreign_key_objects(clazz) %>
+<%= form_for(@object, :builder => Judge::FormBuilder, :html => {:class=>'form-horizontal', :role => 'form'}) do |f| %>
+
+<script type="text/javascript">
+  var controller = '<%= clazz_string %>';
+</script>
+<%= error_messages(@object) %>
+<% clazz.columns_hash.each do |name, value| %>
+<% next if exclude_list.include?(name) %>
+<div class="form-group">
+  <% if name != "latitude" && name != "longitude" %>
+  <%= f.label name.to_sym, :class=>"col-xs-2 control-label" %>
+  <% end %>
+  <div class="col-xs-10">
+    <% if value.type == :string && name == "state" %>
+    <% if params[:action] == "edit" %>
+      <%= f.select name.to_sym, options_for_select(states_list, @object.state), {}, { class: 'form-control' } %>
+    <% else %>
+      <%= f.select name.to_sym, options_for_select(states_list, @object.state), {}, { class: 'form-control' } %>
+    <% end %>
+    <% elsif value.type == :string && name == "role" %>
+      <%= f.collection_select name.to_sym, User::ROLES, :to_s, :humanize, {:selected => @object.role}, {:class => "form-control"} %>
+    <% elsif value.type == :string and name == "email" %>
+    <%= f.text_field name.to_sym, :class=>"form-control" %>
+    <% elsif value.type == :string and name != "email" %>
+    <%= f.text_field name.to_sym, :class=>"form-control", :validate => true, :onblur => 'validator(this)'%>
+    <% elsif value.type == :datetime || value.type == :date %>
+    <%= f.text_field name.to_sym, as: :string, 'data-provide'.to_sym => 'datepicker', class: 'form-control', :validate => true, :onblur => 'validator(this)' %>
+    <% elsif value.type == :decimal && (name == "latitude" || name == "longitude") %>
+    <%= f.hidden_field name.to_sym %>
+    <% elsif value.type == :decimal || (value.type == :integer && !(foreign_keys.include?(name))) %>
+    <%= f.text_field name.to_sym, class: "form-control", validate: true %>
+    <% elsif foreign_keys.include?(name) %>
+    <% fk_object = fk_objects.select {|fk| fk.foreign_key == name}[0] %>
+    <% if params[:action] == "edit" %>
+      <%= collection_select(clazz_string.to_sym, name.to_sym, fk_object.name.to_s.classify.constantize.all,
+      :id, :name, {:selected => @object.send(name)},{class: "form-control"}) %>
+    <% else %>
+      <%= collection_select(clazz_string.to_sym, name.to_sym, fk_object.name.to_s.classify.constantize.all,
+      :id, :name, {},{class: "form-control"}) %>
+    <% end %>
+    <% elsif value.type == :text %>
+    <%= f.text_area name.to_sym, :class=>"form-control", :validate => true, :onblur => 'validator(this)'  %>
+    <% elsif value.type == :boolean && name == "approved" %>
+      <%= f.check_box :approved %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+  <% if clazz.columns_hash.has_key?("longitude") %>
+    <% if((action_name == 'edit' or action_name == "create" or action_name == "update" ) and @object.respond_to? :latitude) %>
+      <script type="text/javascript">
+        var loc = { lat:<%= @object.latitude %>, lng: <%= @object.longitude %> };
+        var title = "<%= @object.name %>";
+        var formarker = true
+        
+        function zoomToLocation() {
+          console.log("Zooming to location.");
+          map.panTo(loc);
+          if (marker) {
+              marker.setMap(null);
+              marker = null
+          }
+
+          marker = new google.maps.Marker({
+              position: loc,
+              title: "<%= @object.name %>"
+          });
+
+          marker.setMap(map);
+          map.panTo(loc);
+        }
+      </script>
+    <% end %>
+    <div class="col-md-2 hidden-xs">
+    </div>
+    <div class="col-md-10">
+      <div id="map-canvas" style="width: 100%;height:300px;margin-bottom: 20px;">
+      </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-10">
+      <%= f.submit 'Save', :class=>'btn btn-primary progasket' %>
+    </div>
+  </div>
+<% end %>

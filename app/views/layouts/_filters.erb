@@ -1,0 +1,45 @@
+<% clazz_string = params[:controller].singularize.downcase; clazz = params[:controller].classify.constantize %>
+<div class="table-responsive">
+  <form id="filter_form">
+    <table id="filter_table" class="table table-striped sortable">
+      <thead>
+      <span id="filter_text">Filter by:</span>
+      <div id="filter-toggle" class="pull-right">
+        <a id="toggle_filter" onclick="toggleFilters()">Hide Filters</a> |
+        <a id="clear_filter" onclick="clearFilters()">Clear</a>
+      </div>
+      </thead>
+      <tbody id="filter_body">
+      <% clazz.show.each do |attr| %>
+        <% next unless clazz.columns_hash[attr].present? %>
+        <% if clazz.columns_hash[attr].type == :string && attr == "state" %>
+           <td>
+             <%= select_tag(attr.to_sym, options_for_select(states_list), { class: 'form-control', prompt: 'Select State' }) %>
+            </td>
+        <% elsif clazz.columns_hash[attr].type == :string || clazz.columns_hash[attr].type == :text %>
+          <td>
+            <input type="text" class="form-control" value="<%= params[attr.to_sym]%>"
+                   name="<%= attr %>" placeholder="<%= attr.humanize %>"/>
+          </td>
+        <% elsif clazz.columns_hash[attr].type == :datetime || clazz.columns_hash[attr].type == :date %>
+           <td>
+             <input type="text" class="form-control" name="<%= attr %>[start_date]"
+                    value="<%= params[attr.to_sym][:start_date] unless params[attr.to_sym].nil? %>"
+                    placeholder="Start <%= attr.humanize %>" data-provide="datepicker" />
+           </td>
+           <td>
+             <input type="text" class="form-control" name="<%= attr %>[end_date]"
+                    value="<%= params[attr.to_sym][:end_date] unless params[attr.to_sym].nil? %>"
+                    placeholder="End <%= attr.humanize %>" data-provide="datepicker" />
+           </td>
+        <% end %>
+      <% end %>
+      <input type="hidden" name="sortColumn" value="" />
+      <input type="hidden" name="sortOrder" value="" />
+      <td>
+        <input type="submit" class="btn btn-primary progasket" value="Filter"/></td>
+      </td>
+      </tbody>
+    </table>
+  </form>
+</div>

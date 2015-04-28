@@ -1,0 +1,27 @@
+<div class="row header">
+  <div class="col-xs-12">
+    <div class="meta pull-left">
+      <div class="page">
+        <%= params[:controller].titleize %>
+      </div>
+      <div class="breadcrumb-links">
+        Home / <%= params[:controller].titleize %>
+      </div>
+    </div>
+    <div class="user pull-right">
+      <div class="item pull-left">
+        <span class="pull-left">Welcome </span><br/>
+        <%= link_to edit_user_path(current_user, own: true), :title => "Edit Account" do %>
+          <span class="pull-left"><%= current_user.email %></span>
+          <span class="glyphicon glyphicon-cog" style="margin-left:10px;"></span>
+        <% end %>
+      </div>
+      <div class="item pull-left">
+        <%= link_to destroy_user_session_path, :method => :delete do %> 
+          <span class="glyphicon glyphicon-log-out glyphicon-medium"></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
