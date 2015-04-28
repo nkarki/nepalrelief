@@ -1,0 +1,67 @@
+<% if @object.respond_to? :latitude %>
+<script type="text/javascript">
+	function zoomToLocation() {
+	  console.log("Zooming to location.");
+	  var loc = { lat:<%= @object.latitude %>, lng: <%= @object.longitude %> };
+	  map.panTo(loc);
+	  if (marker) {
+	      marker.setMap(null);
+	      marker = null
+	  }
+
+	  marker = new google.maps.Marker({
+	      position: loc,
+	      title: "<%= @object.name %>"
+	  });
+
+	  marker.setMap(map);
+	  map.panTo(loc);
+	}
+</script>
+<% end %>
+
+
+<% clazz_string = params[:controller].classify.underscore; clazz = params[:controller].classify.constantize %>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="widget">
+			<div class="widget-header">
+				<%= link_to 'Edit', eval("edit_#{clazz_string}_path(@object)"), :class=>'btn btn-sm btn-primary pull-right show progasket' %>
+			</div>
+			<div class="widget-body">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+
+						<% clazz.show_details.each do |field| %>
+						<div class="row">
+							<div class="col-xs-4">
+								<label for="<%= field %>" class="pull-right"><%= field.humanize.capitalize %></label>
+							</div>
+							<div class="col-xs-8">
+                              <%= @object.send(field).to_s unless @object.send(field).respond_to? :display_name %>
+                              <%= @object.send(field).display_name if @object.send(field).respond_to? :display_name %>
+							</div>
+						</div>
+						<% end %>
+						
+						<% if clazz.to_s == 'Visit' %>
+							<div class="pull-left">
+							  	<%= link_to 'Export as Excel', eval("#{clazz_string.pluralize}_excel_output_path(object_id: #{@object.id})"), :class=>'btn btn-sm btn-primary pull-right show progasket' %>
+							</div>
+						<% end %>
+					</div>	
+
+	        <% if @object.respond_to? :latitude %>
+					<div id="map-canvas" class="col-md-6 col-xs-12" style="border:1px solid lightgrey;height:200px;">
+					</div>
+	         <% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if clazz.to_s == 'Visit' %>
+	<%= render 'layouts/visit_activities' %>
+<% end %>

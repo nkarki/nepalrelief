@@ -1,0 +1,6 @@
+<%= render 'layouts/list_header' %>
+<% if params[:controller] == "visits" and params[:action] == "index" %>
+  <%= render 'layouts/visits_list_table' %>
+<% else %>
+  <%= render 'layouts/list_table' %>
+<% end %>

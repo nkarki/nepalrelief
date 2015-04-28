@@ -1,0 +1,18 @@
+<% entity_name = params[:controller].titleize %>
+<% action_name = params[:action].titleize %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="widget">
+      <div class="widget-header">
+        <%= action_name %> <%= entity_name.singularize %>
+      </div>
+      <div class="widget-body">
+        <% unless @for_devise_view %>
+          <%= render 'layouts/create_entity' %>
+        <% else %>
+          <%= render template: 'devise/registrations/edit' %>
+        <% end %>
+      </div>
+    </div>
+   </div>
+</div>
