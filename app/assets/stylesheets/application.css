@@ -12,4 +12,46 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker3
  */
+
+ .menu_icon{
+ 	max-width: 165px;
+ }
+
+ .progasket{
+ 	background-color: #005700;
+ 	border-color: #005700;
+ 	color: #fff !important;
+ }
+
+ .progasket:hover{
+ 	background-color: #227922;
+ 	border-color: #227922;
+ }
+
+ .footer_links a:hover{
+ 	/*background-color: #005700 !important;*/
+ 	text-decoration: underline;
+ }
+
+ .field_with_err input{
+ 	border-color: red;
+ }
+
+ .download_div{
+ 	width: 100%;
+ 	margin-top: 10px;
+ }
+.download_div a{
+ 	color: #fff;
+ }
+.download_div a:link {
+	text-decoration: none;
+}
+.download_div a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+ 

@@ -1,0 +1,2 @@
+wb = xlsx_package.workbook
+render :partial => 'layouts/master.xlsx.axlsx', :locals => {:wb => wb}
