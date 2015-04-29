@@ -20,14 +20,14 @@
  }
 
  .progasket{
- 	background-color: #005700;
- 	border-color: #005700;
+ 	background-color: #000099;
+ 	border-color: #000099;
  	color: #fff !important;
  }
 
  .progasket:hover{
- 	background-color: #227922;
- 	border-color: #227922;
+ 	background-color: #7A1F00;
+ 	border-color: #7A1F00;
  }
 
  .footer_links a:hover{

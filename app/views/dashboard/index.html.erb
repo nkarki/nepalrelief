@@ -3,60 +3,66 @@
 
 <div class="row">
 	<div class="col-md-3 col-sm-6 col-xs-12">
+      <%= link_to sites_path do %>
 		<div class="widget">
 			<div class="widget-body">
 				<div class="widget-icon red pull-left">
 					<span class="glyphicon glyphicon-briefcase glyphicon-large"></span>
 				</div>
 				<div class="widget-content pull-left">
-					<div class="title">Test</div>
-					<div class="comment">Companies</div>
+					<div class="title"><%= @no_of_sites %></div>
+					<div class="comment">Site(s)</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
+      <% end %>
 	</div>
 
 	<div class="col-md-3 col-sm-6 col-xs-12">
+      <%= link_to organizations_path do %>
 		<div class="widget">
 			<div class="widget-body">
 				<div class="widget-icon orange pull-left">
 					<span class="glyphicon glyphicon-shopping-cart glyphicon-large"></span>
 				</div>
 				<div class="widget-content pull-left">
-					<div class="title">Test_store</div>
-					<div class="comment">Stores</div>
+					<div class="title"><%= @no_of_orgs %></div>
+					<div class="comment">Organization(s)</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
+      <% end %>
 	</div>
 
 	<div class="col-md-3 col-sm-6 col-xs-12">
+      <%= link_to needed_items_path do %>
 		<div class="widget">
 			<div class="widget-body">
-				<div class="widget-icon green pull-left">
+				<div class="widget-icon blue pull-left">
 					<span class="glyphicon glyphicon-list glyphicon-large"></span>
 				</div>
 				<div class="widget-content pull-left">
-					<div class="title">@no_of_visits</div>
-					<div class="comment">Visits</div>
+					<div class="title"><%= @no_of_urgent_needs %></div>
+					<div class="comment">urgent needs.</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
+      <% end %>
 	</div>
 
 		<div class="col-md-3 col-sm-6 col-xs-12">
-		<%= link_to inactive_users_path do %>
+		<%= link_to sites_path do %>
 			<div class="widget">
 				<div class="widget-body">
 					<div class="widget-icon blue pull-left">
 						<span class="glyphicon glyphicon-user glyphicon-large"></span>
 					</div>
 					<div class="widget-content pull-left">
-						<div class="title"><%= @no_of_inactive_users %></div>
-						<div class="comment">Inactive Users</div>
+						<div class="title"><%= @no_of_people_needing_relief %></div>
+						<div class="comment">people in need</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -64,20 +70,6 @@
 		<% end %>
 		</div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="widget">
-            <div class="widget-body">
-              <div class="widget-icon red pull-left">
-                <span class="glyphicon glyphicon-barcode glyphicon-large"></span>
-              </div>
-              <div class="widget-content pull-left">
-                <div class="title">@no_of_warranties_expiring</div>
-                <div class="comment">Exp. Warranties</div>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-          </div>
-    </div>
 </div>
 
 <div class="row">
