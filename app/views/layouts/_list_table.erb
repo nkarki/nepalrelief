@@ -56,7 +56,7 @@
                       <td>
                         <%= link_to object, method: :delete, data: { confirm: 'Are you sure?' } do %>
                             <span style="color: red;" class="glyphicon glyphicon-trash"></span>
-                        <% end %>
+                        <% end if can? :delete, clazz %>
                       </td>
                   <% else %>
                     <td colspan="3">
@@ -82,7 +82,7 @@
                   <td>
                     <%= link_to object, method: :delete, data: { confirm: 'Are you sure to delete this user ?' } do %>
                         <span style="color: red;" class="glyphicon glyphicon-trash"></span>
-                    <% end %>
+                    <% end if can? :delete, clazz %>
                   </td>
                 <% else %>
                   <td>
@@ -98,7 +98,7 @@
                   <td>
                     <%= link_to object, method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <span style="color: red;" class="glyphicon glyphicon-trash"></span>
-                    <% end %>
+                    <% end if can? :delete, clazz %>
                   </td>
                 <% end %>
               </tr>

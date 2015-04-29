@@ -1,5 +1,5 @@
-<% show_class = {"items" => "glyphicon-th", "organizations" => "glyphicon-th", "news" => "glyphicon-tasks",
-                 "sites" => "glyphicon-th", "contact_people" => "glyphicon-user", "needed_items" => "glyphicon-th"} %>
+<% show_class = {"items" => "glyphicon-gift", "organizations" => "glyphicon-th", "news" => "glyphicon-bullhorn",
+                 "sites" => "glyphicon-globe", "contact_people" => "glyphicon-user", "needed_items" => "glyphicon-flag"} %>
 <div id="sidebar-wrapper" data-no-turbolink="true">
   <ul class="sidebar">
     <li class="sidebar-main">
@@ -8,7 +8,7 @@
       </a>
     </li>
     <li class="sidebar-list">
-      <a href="/dashboard" class="<%= ( 'dashboard' == params[:controller])? 'active' : '' %>">Home<span class="pull-right glyphicon glyphicon-home"></span></a>
+      <a href="/dashboard" class="<%= ( 'dashboard' == params[:controller])? 'active' : '' %>">Dashboard<span class="pull-right glyphicon glyphicon-home"></span></a>
     </li>
     <% show_class.each do |model,icon| %>
       <% active_class = (model == params[:controller])? "active" : "" %>
