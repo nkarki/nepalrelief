@@ -54,4 +54,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def is_login?
+    current_user != nil
+  end
+
 end

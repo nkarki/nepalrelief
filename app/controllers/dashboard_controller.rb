@@ -1,7 +1,5 @@
 class DashboardController < ApplicationController
   
-  before_filter :is_login?
-
   def new
   end
 

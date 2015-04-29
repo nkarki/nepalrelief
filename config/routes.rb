@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :news
-  resources :dashboard
-  resources :users
-  resources :items
-  resources :organizations
-  resources :sites
-  resources :contact_people
-  resources :needed_items
+  authenticated :user do
+    resources :news, only: [:new, :create, :edit, :update, :destroy]
+    resources :dashboard, only: [:new, :create, :edit, :update, :destroy]
+    resources :users, only: [:new, :create, :edit, :update, :destroy]
+    resources :items, only: [:new, :create, :edit, :update, :destroy]
+    resources :organizations, only: [:new, :create, :edit, :update, :destroy]
+    resources :sites, only: [:new, :create, :edit, :update, :destroy]
+    resources :contact_people, only: [:new, :create, :edit, :update, :destroy]
+    resources :needed_items, only: [:new, :create, :edit, :update, :destroy]
+  end
+
+  resources :news, only: [:index, :show]
+  resources :dashboard, only: [:index, :show]
+  resources :users, only: [:index, :show]
+  resources :items, only: [:index, :show]
+  resources :organizations, only: [:index, :show]
+  resources :sites, only: [:index, :show]
+  resources :contact_people, only: [:index, :show]
+  resources :needed_items, only: [:index, :show]
 
   root "dashboard#index"
 
