@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-
+  belongs_to :organization	
   def self.show
     ["name", "item_type", "created_at"]
   end

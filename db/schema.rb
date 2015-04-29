@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429065531) do
+ActiveRecord::Schema.define(version: 20150429075859) do
 
   create_table "contact_people", force: true do |t|
     t.string   "name"
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
+    t.integer  "site_id"
   end
+
+  add_index "contact_people", ["organization_id"], name: "index_contact_people_on_organization_id"
+  add_index "contact_people", ["site_id"], name: "index_contact_people_on_site_id"
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -27,7 +32,10 @@ ActiveRecord::Schema.define(version: 20150429065531) do
     t.datetime "updated_at"
     t.integer  "quantity"
     t.integer  "status"
+    t.integer  "organization_id"
   end
+
+  add_index "items", ["organization_id"], name: "index_items_on_organization_id"
 
   create_table "needed_items", force: true do |t|
     t.string   "name"
@@ -39,7 +47,10 @@ ActiveRecord::Schema.define(version: 20150429065531) do
     t.date     "delivered_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_id"
   end
+
+  add_index "needed_items", ["site_id"], name: "index_needed_items_on_site_id"
 
   create_table "news", force: true do |t|
     t.datetime "published_at"
