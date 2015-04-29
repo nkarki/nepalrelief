@@ -25,3 +25,4 @@ production:
   pool: 5
   username: root
   password: 8YqhdGdZEm
+  database: reliefnepal
