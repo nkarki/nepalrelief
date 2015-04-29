@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429035525) do
+ActiveRecord::Schema.define(version: 20150429062324) do
 
   create_table "contact_people", force: true do |t|
     t.string   "name"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20150429035525) do
     t.string   "address1"
     t.string   "address2"
     t.string   "zip"
-    t.string   "latitude"
-    t.string   "longitude"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   create_table "sites", force: true do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20150429035525) do
     t.string   "address1"
     t.string   "address2"
     t.integer  "zip"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.integer  "severity"
     t.integer  "population"
     t.datetime "created_at"
