@@ -1,0 +1,3 @@
+<%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :class => "alert alert-danger", :role=>"alert", :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%>

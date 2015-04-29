@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :news
+  resources :dashboard
+  resources :users
+  resources :items
+  resources :organizations
+  resources :sites
+  resources :contact_people
+  resources :needed_items
+
+  root "dashboard#index"
+
+  resources :users, path: "user" do
+    collection do
+      get "inactive"
+      post "activate"
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

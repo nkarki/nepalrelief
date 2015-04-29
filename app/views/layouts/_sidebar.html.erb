@@ -1,12 +1,10 @@
-<% show_class = {"companies"=>"glyphicon-briefcase", "stores"=>"glyphicon-shopping-cart", 
-  "visits"=>"glyphicon-list", "manufacturing_part" => "glyphicon-wrench",
- "users" => "glyphicon-user", "apks" => "glyphicon-upload"} %>
+<% show_class = {"items" => "glyphicon-th", "organizations" => "glyphicon-th", "news" => "glyphicon-tasks",
+                 "sites" => "glyphicon-th", "contact_people" => "glyphicon-user", "needed_items" => "glyphicon-th"} %>
 <div id="sidebar-wrapper" data-no-turbolink="true">
   <ul class="sidebar">
     <li class="sidebar-main">
       <a href="#" onclick="toggleSidebar()">
-        <%= image_tag("Logo.png", class: "menu_icon") %>
-        <span class="pull-right menu-icon glyphicon glyphicon-transfer"></span>
+        <span>Earthquake Data</span><span class="pull-right menu-icon glyphicon glyphicon-transfer"></span>
       </a>
     </li>
     <li class="sidebar-list">
@@ -14,10 +12,6 @@
     </li>
     <% show_class.each do |model,icon| %>
       <% active_class = (model == params[:controller])? "active" : "" %>
-      <% if can? :read, model.capitalize.classify.constantize %>
-        <% if can? :read, model.capitalize.classify.constantize and model == "apks" and (current_user.is? "technician" or current_user.is? "user") %>
-          <% next %>
-        <% else %>
           <li class="sidebar-list">
             <div>
             <%= link_to model.capitalize.classify.constantize, :class => active_class do %>
@@ -25,17 +19,11 @@
             <% end %>
             </div>
           </li>
-        <% end %>
-      <% end %>
     <% end %>
   </ul>
   <% if(current_user.is? "administrator") %>
     <div class="sidebar-footer">
-      <div class="col-xs-6 footer_links">
-          <%= link_to 'Help', helps_path %>
-      </div>
       <!-- <div class="col-xs-6 footer_links">
-          <%= link_to 'About', about_us_path %>
       </div> -->
     </div>
   <% end %>

@@ -1,0 +1,66 @@
+<%= form_for(@object, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class=>'form-horizontal', :role => 'form' }) do |f| %>
+  <!-- error div -->
+  <% if !@error.blank? %>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <strong><%= "#{@error.count} errors prohibited from Updating:-" %></strong>
+        <ul>
+          <% @error.each do |v| %>
+            <li><%= "#{v}" %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :email, :class=>"col-xs-2 control-label" %>
+    <div class="col-xs-10">
+      <%= f.email_field :email, autofocus: true, :class=>"form-control" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+  <div class="col-xs-2"></div>
+  <div class="col-xs-10">
+    <i>(leave blank if you don't want to change it)</i>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, :class=>"col-xs-2 control-label" %> 
+    <div class="col-xs-10">
+      <%= f.password_field :password, autocomplete: "off", :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, :class=>"col-xs-2 control-label" %>
+    <div class="col-xs-10">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="col-xs-2"></div>
+  <div class="col-xs-10">
+     <i>(we need your current password to confirm your changes)</i>
+  </div>
+  <div class="form-group">
+    <%= f.label :current_password, :class=>"col-xs-2 control-label" %>
+    <div class="col-xs-10">
+      <%= f.password_field :current_password, autocomplete: "off", :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-top:20px;">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-10">
+      <%= f.submit "Update", :class=>'btn btn-primary progasket' %>
+      <h3>Cancel my account</h3>
+      <p>Unhappy?</p>
+      <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>'btn btn-primary progasket' %><br /><br />
+
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+<% end %>

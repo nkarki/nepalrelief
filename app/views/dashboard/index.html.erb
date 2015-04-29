@@ -1,0 +1,130 @@
+<%= render "layouts/sidebar" %>
+<%= render "layouts/list_header" %>
+
+<div class="row">
+	<div class="col-md-3 col-sm-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-icon red pull-left">
+					<span class="glyphicon glyphicon-briefcase glyphicon-large"></span>
+				</div>
+				<div class="widget-content pull-left">
+					<div class="title">Test</div>
+					<div class="comment">Companies</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-sm-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-icon orange pull-left">
+					<span class="glyphicon glyphicon-shopping-cart glyphicon-large"></span>
+				</div>
+				<div class="widget-content pull-left">
+					<div class="title">Test_store</div>
+					<div class="comment">Stores</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-sm-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-icon green pull-left">
+					<span class="glyphicon glyphicon-list glyphicon-large"></span>
+				</div>
+				<div class="widget-content pull-left">
+					<div class="title">@no_of_visits</div>
+					<div class="comment">Visits</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+		<div class="col-md-3 col-sm-6 col-xs-12">
+		<%= link_to inactive_users_path do %>
+			<div class="widget">
+				<div class="widget-body">
+					<div class="widget-icon blue pull-left">
+						<span class="glyphicon glyphicon-user glyphicon-large"></span>
+					</div>
+					<div class="widget-content pull-left">
+						<div class="title"><%= @no_of_inactive_users %></div>
+						<div class="comment">Inactive Users</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		<% end %>
+		</div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="widget">
+            <div class="widget-body">
+              <div class="widget-icon red pull-left">
+                <span class="glyphicon glyphicon-barcode glyphicon-large"></span>
+              </div>
+              <div class="widget-content pull-left">
+                <div class="title">@no_of_warranties_expiring</div>
+                <div class="comment">Exp. Warranties</div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 col-sm-12">		
+		<div class="widget">
+			<div class="widget-header">
+				Companies and their store count
+			</div>
+			<div class="widget-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Created at</th>
+								<th>Stores</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-12">		
+		<div class="widget">
+			<div class="widget-header">
+				Highest visited stores
+			</div>
+			<div class="widget-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>City</th>
+								<th>#Visits</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+	</div>
+</div>

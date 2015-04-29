@@ -1,0 +1,70 @@
+function toggleSidebar(){
+	pageclass = $('#page-wrapper').attr('class');
+	if(pageclass=='active'){
+		$('#page-wrapper').removeClass('active')
+	}else{
+		$('#page-wrapper').addClass('active');
+	}
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function resetForm($form) {
+    $form.find('input:text, input:password, input:file, select, textarea').val('');
+    $form.find('input:radio, input:checkbox')
+        .removeAttr('checked').removeAttr('selected');
+}
+
+function clearFilters() {
+    var form = $('#filter_form');
+    resetForm(form);
+    form.submit();
+}
+
+function toggleFilters() {
+    if($('#filter_body').is(':visible')) {
+        $('#filter_text').hide(500);
+        $('#filter_body').hide(500);
+        $('#clear_filter').hide(500);
+        $('#toggle_filter').html('Show Filters');
+    } else {
+        $('#filter_text').show(500);
+        $('#filter_body').show(500);
+        $('#clear_filter').show(500);
+        $('#toggle_filter').html('Hide Filters');
+    }
+}
+
+var currentSortColumn = getParameterByName('sortColumn');
+var currentSortOrder = getParameterByName('sortOrder');
+function sortBy(column) {
+    if(column == currentSortColumn) {
+        if(currentSortOrder == 'asc') {
+            currentSortOrder = 'desc';
+        } else {
+            currentSortOrder = 'asc';
+        }
+    } else {
+        currentSortColumn = column;
+        currentSortOrder = 'asc';
+
+    }
+    $('[name=sortOrder]').attr("value", currentSortOrder);
+    $('[name=sortColumn]').attr("value", currentSortColumn);
+    $('#filter_form').submit();
+}
+
+$(document).ready(function() {
+    if($("#filter_form :input").filter("[value != '']").filter("[type != 'submit']").filter("[id != 'state']").length == 0) {
+        $('#filter_text').hide(0);
+        $('#filter_body').hide(0);
+        $('#clear_filter').hide(0);
+        $('#toggle_filter').html('Show Filters');
+    }
+});
+
