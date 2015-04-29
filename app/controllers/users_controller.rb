@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include ExcelExport
-  
   before_filter :is_login?
 
   def index
