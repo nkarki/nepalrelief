@@ -29,9 +29,9 @@ function getGeoCode() {
     if(controller) {
         var address1 = $('#' + controller + '_address_1').val();
         var address2 = $('#' + controller + '_address_2').val();
-        //var city = $('#' + controller + '_city').val();
-        //var state = $('#' + controller + '_state').val();
-        var zip = $('#' + controller + '_zip').val();
+        var city = $('#' + controller + '_city').val();
+        var state = $('#' + controller + '_district').val();
+        var zip = $('#' + controller + '_zone').val();
 
         var addressArray = [];
         address1 += ' ' + address2;
@@ -39,8 +39,9 @@ function getGeoCode() {
         addressArray.push(city);
         addressArray.push(state);
         addressArray.push(zip);
+        addressArray.push("Nepal");
 
-        if (address1 != "" && city != "") {
+        // if (address1 != "" && city != "") {
             var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(addressArray.join()) + '&key=AIzaSyANSKT2dUGVFpRgfNrho-dpGg0EysDiwzI';
 
             var get = $.get(url);
@@ -66,7 +67,7 @@ function getGeoCode() {
                     $('#' + controller + '_longitude').val(location.lng);
                 }
             });
-        }
+        // }
     }
 }
 
@@ -77,10 +78,11 @@ loadGoogleMapsScript = function() {
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyANSKT2dUGVFpRgfNrho-dpGg0EysDiwzI&callback=initialize';
     document.body.appendChild(script);
     if(typeof(controller) !== 'undefined') {
+        $('#' + controller + '_address_2').on('focusout', getGeoCode);
         $('#' + controller + '_address_1').on('focusout', getGeoCode);
         $('#' + controller + '_city').on('focusout', getGeoCode);
-        $('#' + controller + '_state').on('focusout', getGeoCode);
-        $('#' + controller + '_zip').on('focusout', getGeoCode);
+        $('#' + controller + '_district').on('focusout', getGeoCode);
+        $('#' + controller + '_zone').on('focusout', getGeoCode);
     }
 };
 //$(document).ready(loadGoogleMapsScript); //calls for the function we defined above (first loading)

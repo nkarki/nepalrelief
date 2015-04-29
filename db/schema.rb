@@ -67,8 +67,9 @@ ActiveRecord::Schema.define(version: 20150429075859) do
     t.datetime "updated_at"
     t.string   "zone"
     t.string   "district"
-    t.string   "address1"
-    t.string   "address2"
+    t.string   "city"
+    t.string   "address_1"
+    t.string   "address_2"
     t.decimal  "latitude"
     t.decimal  "longitude"
   end

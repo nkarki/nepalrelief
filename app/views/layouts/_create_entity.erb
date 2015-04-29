@@ -50,8 +50,8 @@
     <% end %>
     <% elsif value.type == :text %>
     <%= f.text_area name.to_sym, :class=>"form-control", :validate => true, :onblur => 'validator(this)'  %>
-    <% elsif value.type == :boolean && name == "approved" %>
-      <%= f.check_box :approved %>
+    <% elsif value.type == :boolean %>
+      <%= f.check_box name.to_sym %>
     <% end %>
   </div>
 </div>
