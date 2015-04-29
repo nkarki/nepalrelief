@@ -6,8 +6,10 @@ class DashboardController < ApplicationController
   end
 
   def index
-#@no_of_companies = Company.count
-#@no_of_stores = Store.count
+    @no_of_sites = Site.count
+    @no_of_orgs = Organization.count
+    @no_of_urgent_needs = NeededItem.where(priority: 'urgent').count
+    @no_of_people_needing_relief = Site.sum(:population)
 #@no_of_visits = Visit.count
 #@no_of_inactive_users = User.count
 #

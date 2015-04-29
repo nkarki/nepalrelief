@@ -29,8 +29,8 @@ function getGeoCode() {
     if(controller) {
         var address1 = $('#' + controller + '_address_1').val();
         var address2 = $('#' + controller + '_address_2').val();
-        var city = $('#' + controller + '_city').val();
-        var state = $('#' + controller + '_state').val();
+        //var city = $('#' + controller + '_city').val();
+        //var state = $('#' + controller + '_state').val();
         var zip = $('#' + controller + '_zip').val();
 
         var addressArray = [];
