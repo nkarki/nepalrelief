@@ -10,12 +10,14 @@
     </div>
     <div class="user pull-right">
       <div class="item pull-left">
+        <span class="pull-left">Welcome </span><br/>
         <% if is_login? %>
-          <span class="pull-left">Welcome </span><br/>
           <%= link_to edit_user_path(current_user, own: true), :title => "Edit Account" do %>
             <span class="pull-left"><%= current_user.email %></span>
             <span class="glyphicon glyphicon-cog" style="margin-left:10px;"></span>
           <% end %>
+        <% else %>
+            <span class="pull-left">Guest</span>
         <% end %>
       </div>
       <div class="item pull-left">
@@ -23,6 +25,10 @@
           <%= link_to destroy_user_session_path, :method => :delete do %>
             <span class="glyphicon glyphicon-log-out glyphicon-medium"></span>
           <% end %>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+            <span class="glyphicon glyphicon-log-in glyphicon-medium"></span>
+          <% end %>  
         <% end %>
       </div>
     </div>

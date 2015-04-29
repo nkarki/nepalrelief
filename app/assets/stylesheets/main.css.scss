@@ -324,7 +324,7 @@ ul.sidebar .sidebar-list a {
 }
 ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a.active{
   color: #fff;
-  border-left: 3px solid #000000; /* older #e99d1a */
+  border-left: 5px solid #ce0000; /* older #e99d1a */
   text-indent: 22px;
 }
 ul.sidebar .sidebar-list a:hover .menu-icon {
@@ -482,6 +482,11 @@ font-style: italic;
   color: #ffffff;
   font-size: 30px;
 }
+
+.widget .widget-content {
+  padding: 20px 5px;
+}
+
 .widget .widget-content .title {
   font-size: 28px;
   display: block;
