@@ -68,6 +68,7 @@ end
 
 gem 'capistrano-unicorn-nginx', '~> 3.1.0'
 gem 'unicorn'
+gem 'pry'
 
 gem 'acts_as_xlsx', github: 'straydogstudio/acts_as_xlsx'
 gem 'axlsx_rails'

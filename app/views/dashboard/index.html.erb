@@ -94,6 +94,35 @@
 		</div>
 	</div>
 	<div class="col-md-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-header">
+				Volunteers
+			</div>
+			<div class="widget-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Skill Sets</th>
+								<th>Location</th>
+								<th></th>
+							</tr>	
+						</thead>
+						<% @volunteeers.each do |v| %>
+							<tr>
+								<td><%= v.name %></td>
+								<td><%= v.skillsets %></td>
+								<td><%= v.location %></td>
+								<td><%= link_to "Contact", volunteer_path(v) %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-xs-12">
 		<div class="row">
 			<div class="">		
 				<div class="widget">
@@ -142,6 +171,5 @@
 			<div class="row">
 			</div>
 		</div>
-
 	</div>
 </div>

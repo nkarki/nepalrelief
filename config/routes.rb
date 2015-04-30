@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   authenticated :user do
     resources :news, only: [:new, :create, :edit, :update, :destroy]
@@ -9,8 +10,10 @@ Rails.application.routes.draw do
     resources :sites, only: [:new, :create, :edit, :update, :destroy]
     resources :contact_people, only: [:new, :create, :edit, :update, :destroy]
     resources :needed_items, only: [:new, :create, :edit, :update, :destroy]
+    resources :volunteers, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :volunteers, only: [:index, :show]
   resources :news, only: [:index, :show]
   resources :dashboard, only: [:index, :show]
   resources :users, only: [:index, :show]
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   resources :sites, only: [:index, :show]
   resources :contact_people, only: [:index, :show]
   resources :needed_items, only: [:index, :show]
+
 
   root "dashboard#index"
 
