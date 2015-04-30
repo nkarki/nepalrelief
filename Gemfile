@@ -11,9 +11,12 @@ gem 'cancancan', '~> 1.9'
 # to use the country input, need this
 gem 'country_select'
 
-gem 'capistrano', '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
-gem 'capistrano-rvm'
+group :development do 
+	gem 'capistrano', '~> 3.1'
+	gem 'capistrano-rails', '~> 1.1'
+	gem 'capistrano-rvm'
+  	gem 'capistrano3-unicorn'
+end
 gem 'capybara', group: :test
 
 # Use sqlite3 as the database for Active Record
@@ -45,6 +48,7 @@ group :development do
   gem 'spring'
   gem 'method_source'
   gem 'byebug'
+
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
