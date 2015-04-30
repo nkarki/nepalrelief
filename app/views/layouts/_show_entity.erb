@@ -45,12 +45,7 @@
 						</div>
 						<% end %>
 						
-						<% if clazz.to_s == 'Visit' %>
-							<div class="pull-left">
-							  	<%= link_to 'Export as Excel', eval("#{clazz_string.pluralize}_excel_output_path(object_id: #{@object.id})"), :class=>'btn btn-sm btn-primary pull-right show progasket' %>
-							</div>
-						<% end %>
-					</div>	
+					</div>
 
 	        <% if @object.respond_to? :latitude %>
 					<div id="map-canvas" class="col-md-6 col-xs-12" style="border:1px solid lightgrey;height:200px;">
@@ -62,6 +57,6 @@
 	</div>
 </div>
 
-<% if clazz.to_s == 'Visit' %>
-	<%= render 'layouts/visit_activities' %>
+<% if clazz.to_s == 'Site' || clazz.to_s == 'Organization' %>
+	<%= render 'layouts/contacts' %>
 <% end %>

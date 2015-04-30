@@ -10,6 +10,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @contacts = ContactPerson.where(organization: @object)
   end
 
   # GET /organizations/new

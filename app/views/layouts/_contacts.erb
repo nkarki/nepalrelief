@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="widget">
+      <div class="widget-header">
+        <strong>Contacts for this site/org</strong>
+      </div>
+      <div class="widget-body">
+        <% if !@contacts.blank? %>
+            <div class="table-responsive">
+              <table id="data_table" class="table table-striped sortable">
+                <thead>
+                <tr>
+                  <th>Name<span class="glyphicon glyphicon-sort pull-right"></span></th>
+                  <td>Phone</td>
+                  <th colspan="3"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @contacts.each do |object| %>
+                    <tr>
+                      <td><%= object.name %></td>
+                      <td><%= object.phone %></td>
+                      <td></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+        <% else %>
+            No contact persons for this site/org
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

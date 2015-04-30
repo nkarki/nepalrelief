@@ -10,6 +10,7 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    @contacts = ContactPerson.where(site: @object)
   end
 
   # GET /sites/new
