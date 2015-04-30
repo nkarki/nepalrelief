@@ -146,7 +146,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
-    mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -255,7 +254,6 @@ DEPENDENCIES
   judge
   kaminari-bootstrap (~> 3.0.1)
   method_source
-  mysql2
   postmark
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)

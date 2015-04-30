@@ -80,7 +80,7 @@ gem 'figaro'
 gem 'ckeditor'
 
 # Use for mysql connection for server
-gem 'mysql2'
+#gem 'mysql2'
 # for email methods
 gem 'postmark'
 gem 'carrierwave'
