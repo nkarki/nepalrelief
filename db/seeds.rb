@@ -11,3 +11,31 @@ User.create! do |u|
   u.role = 'administrator'
   u.approved = true
 end if not User.exists?(:email=>'admin@example.com')
+
+volunteers = [
+  { 
+    name: "Pratyut Amatya",
+    email: "pratyut@gmail.com",
+    phone: "9841123456",
+    skillsets: "developer",
+    location: "Kirtipur"
+  },
+  { 
+    name: "Dipesh Gautam",
+    email: "dipesh@gmail.com",
+    phone: "9841123456",
+    skillsets: "developer, film maker, photographer",
+    location: "Kuleshwar"
+  },
+  { 
+    name: "Abhaya Thapa",
+    email: "thapa.abhaya@gmail.com",
+    phone: "9841123456",
+    skillsets: "negotiator",
+    location: "Jawalakhel"
+  },
+]
+
+volunteers.each do |v|
+  Volunteer.create! v
+end

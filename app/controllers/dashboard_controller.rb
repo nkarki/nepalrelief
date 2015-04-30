@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @no_of_orgs = Organization.count
     @no_of_urgent_needs = NeededItem.where(priority: 'urgent').count
     @no_of_people_needing_relief = Site.sum(:population)
+    @volunteeers = Volunteer.available  # sort by availiable
 #@no_of_visits = Visit.count
 #@no_of_inactive_users = User.count
 #
