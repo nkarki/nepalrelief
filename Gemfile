@@ -87,5 +87,5 @@ gem 'carrierwave'
 # group :assets do
 #gem 'less-rails'
 #gem 'less'
-#gem 'therubyracer'
+gem 'therubyracer'
 # end
